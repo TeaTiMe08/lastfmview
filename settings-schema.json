@@ -1,7 +1,12 @@
 {
- "width": {
+  "username": {
     "type": "entry",
     "default" : "user",
-    "description" : "The username of your LastFM account"
- }
+    "description" : "The username of your LastFM account."
+  },
+  "confirm": {
+    "type": "button",
+    "description": "The confirmation-button for handling the setting-inputs."
+    "callback": "confirm_settings"
+  }
 }

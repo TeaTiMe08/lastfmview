@@ -1,6 +1,13 @@
 const Applet = imports.ui.applet;
 const Util = imports.misc.util;
 const Settings = imports.ui.settings;
+const Json = imports.gi.Json;
+const Soup = imports.gi.Soup;
+
+const _httpSession = new Soup.SessionAsync();
+Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
+
+
 
 function MyApplet(orientation, panel_height, instance_id) {
     this._init(orientation, panel_height, instance_id);
@@ -20,13 +27,28 @@ MyApplet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN,  // Setting type
             "username",             // The setting key
             "username",             // The property to manage (this.width)
-            this.width_changed,  // Callback when value changes
+            this.username_changed,  // Callback when value changes
             null);               // Optional callback data
         this.username_changed();
+
+        this.settings.bindProperty(Settings.BindingDirection.IN,  // Setting type
+            "confirm",             // The setting key
+            "confirm",             // The property to manage (this.width)
+            this.confirm_settings,  // Callback when value changes
+            null);               // Optional callback data
     },
     
     username_changed: function () {
-        return;
+
+    },
+
+    password_changed: function () {
+
+    },
+
+    confirm_settings: function () {
+        var mes = Soup.Message.new("POST");
+        //TODO hier mit lastfm connecten und wenn Verbindung valide OK-Dialog oeffnen
     },
 
     on_applet_clicked: function() {
