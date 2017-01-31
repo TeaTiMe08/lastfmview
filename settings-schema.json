@@ -1,0 +1,7 @@
+{
+ "width": {
+    "type": "entry",
+    "default" : "user",
+    "description" : "The username of your LastFM account"
+ }
+}
